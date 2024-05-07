@@ -1,13 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, FlatList, Image, ScrollView, StyleSheet, Text, View } from "react-native";
 
 const ingredientProp = "strIngredient";
 const measureProp = "strMeasure";
 
 export default RecipeDetails = ({navigation, route}) => {
-    const [ingredients, setIngredients] = useState([]);
+    const [ingredients, setIngredients] = useState(null);
     const [isDoubleDigit, setDoubleDigit] = useState(false);
-    const [showIngredients, setDisplayIngredients] = useState(false);
 
     const getIngredients = () => {
         let recipeIngredients = [];
@@ -29,30 +28,32 @@ export default RecipeDetails = ({navigation, route}) => {
                 if (ingredientDetails.length > 0) {
                     recipeIngredients.push(ingredientDetails);
                 }
-
-                setDisplayIngredients(true);
             }
         });
-        setIngredients(recipeIngredients);
+
+        const formattedIngredients = recipeIngredients.join("\r\n");
+
+        setIngredients(formattedIngredients);
     }
 
+    useEffect(() => {
+      getIngredients();
+    }, []);
+
+    // TODO: Separate ingredients and instructions into their own components
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
           <Text style={styles.heading}>{route.params.recipe.strMeal}</Text>
           <Image style={styles.tinyLogo} source={{uri: route.params.recipe.strMealThumb}} />
-          {!showIngredients ? <Button title="Show ingredients" style={styles.button} onPress={getIngredients}></Button> : null}
-          {showIngredients ?
-            <FlatList
-              data={ingredients}
-              renderItem={({item}) => <Text>{item}</Text>}
-              keyExtractor={item => item}/>
-          : null}
-          <Text>{route.params.recipe.strInstructions}</Text>
+          <Text style={styles.subHeading}>Ingredients</Text>
+          <Text style={styles.textPadding}>{ingredients}</Text>
+          <Text style={styles.subHeading}>Instructions</Text>
+          <Text style={styles.textPadding}>{route.params.recipe.strInstructions}</Text>
           <Button
             title="Home"
             style={styles.button}
             onPress={() => navigation.navigate('RandomRecipe')}></Button>
-        </View>
+        </ScrollView>
     )
 }
 
@@ -78,5 +79,12 @@ const styles = StyleSheet.create({
      fontSize: 20,
      alignSelf: 'center',
      paddingBottom: 10
+    },
+    subHeading: {
+      fontWeight: 'bold',
+      fontSize: 16
+    },
+    textPadding: {
+      paddingBottom: 10
     }
 });
