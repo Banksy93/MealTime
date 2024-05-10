@@ -11,10 +11,12 @@ export default App = () => {
       <Stack.Navigator>
         <Stack.Screen
           name="RandomRecipe"
-          component={RandomRecipe} />
+          component={RandomRecipe}
+          options={{title: 'Random Recipe' }} />
         <Stack.Screen
           name="RecipeDetails"
-          component={RecipeDetails} />
+          component={RecipeDetails}
+          options={{title: 'Recipe Details'}} />
       </Stack.Navigator>
     </NavigationContainer>
   );
