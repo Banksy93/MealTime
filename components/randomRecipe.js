@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { FlatList, StyleSheet, Text, Image, Button, View } from 'react-native';
+import { useEffect, useState } from 'react';
+import { FlatList, StyleSheet, Button, View } from 'react-native';
 import MealDbRoutes from '../api/mealDbRoutes.js';
 import BasicRecipe from './basicRecipe.js';
 
@@ -16,6 +16,10 @@ export default RandomRecipe = ({navigation}) => {
     setRecipeButtonText('Find Another Recipe');
   }
 
+  useEffect(() => {
+    getRandomRecipe();
+  }, []);
+
   return (
     <View style={styles.container}>
       { <FlatList
@@ -28,7 +32,7 @@ export default RandomRecipe = ({navigation}) => {
               <BasicRecipe recipe={item}></BasicRecipe>
             </View>
             <Button
-              title="More details"
+              title="Recipe details"
               style={styles.button}
               onPress={() => navigation.navigate('RecipeDetails', {recipe: item})}></Button>
           </View>
