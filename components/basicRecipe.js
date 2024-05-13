@@ -2,7 +2,7 @@ import { Image, StyleSheet, Text, View } from "react-native";
 
 const BasicRecipe = props => {
     return (
-        <View>
+        <View style={styles.border}>
             <Text style={styles.heading}>{props.recipe.strMeal}</Text>
             <View style={styles.imageContainer}>
                 <Image style={styles.tinyLogo} source={{uri: props.recipe.strMealThumb}}></Image>
@@ -26,6 +26,10 @@ const styles = StyleSheet.create({
     imageContainer: {
         padding: 5,
         alignSelf: 'flex-start'
+    },
+    border: {
+        borderWidth: 3,
+        paddingBottom: 5
     }
 })
 

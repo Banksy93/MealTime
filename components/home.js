@@ -1,13 +1,18 @@
 import { Button, StyleSheet, Text, View } from "react-native"
+import Heading from "./heading"
 
 export default Home = ({navigation}) => {
     return (
         <View style={styles.container}>
-            <Text style={styles.heading}>Welcome To Random Recipes!</Text>
+            <Heading title='Welcome To Random Recipes!'></Heading>
             <Button
-             title="Random Recipe Please!"
-             styles={styles.button}
-             onPress={() => navigation.navigate('RandomRecipe')}></Button>
+                title="Random Recipe Please!"
+                styles={styles.button}
+                onPress={() => navigation.navigate('RandomRecipe')}></Button>
+             <Button
+                title="Categories"
+                style={styles.button}
+                onPress={() => navigation.navigate('Categories')}></Button>
         </View>
     )
 }
