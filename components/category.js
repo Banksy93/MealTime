@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { Pressable, ScrollView, StyleSheet } from "react-native";
 import Heading from "./heading";
 import { useEffect, useState } from "react";
 import MealDbRoutes from "../api/mealDbRoutes";
@@ -16,16 +16,24 @@ const Category = ({navigation, route}) => {
         }
 
         getRecipesForCategory();
-    }, [])
+    }, []);
+
+    const navigateToRecipeDetails = async (id) => {
+        const url = MealDbRoutes.getReicpeById(id);
+        const response = await fetch(url);
+        const json = await response.json();
+        const recipe = json.meals[0];
+
+        navigation.navigate("RecipeDetails", {recipe: recipe});
+    }
 
     return (
         <ScrollView style={styles.container}>
             <Heading title={route.params.category}></Heading>
                 { recipes.map(r => (
-                    <BasicRecipe
-                        key={r.idMeal}
-                        recipe={r}>
-                    </BasicRecipe>
+                    <Pressable key={r.idMeal} onPress={() => navigateToRecipeDetails(r.idMeal)}>
+                        <BasicRecipe recipe={r}></BasicRecipe>
+                    </Pressable>
                 )) }
         </ScrollView>
     )
