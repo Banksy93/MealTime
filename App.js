@@ -5,6 +5,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './components/home';
 import CategoryList from './components/categoryList';
 import Category from './components/category';
+import AreaList from './components/areaList';
+import Area from './components/area';
 
 const Stack = createNativeStackNavigator();
 
@@ -31,6 +33,13 @@ export default App = () => {
         <Stack.Screen
           name="Category"
           component={Category} />
+        <Stack.Screen
+          name="Areas"
+          component={AreaList}
+          options={{title: 'Areas'}} />
+        <Stack.Screen
+          name="Area"
+          component={Area} />
       </Stack.Navigator>
     </NavigationContainer>
   );
