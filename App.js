@@ -36,7 +36,7 @@ export default App = () => {
         <Stack.Screen
           name="Areas"
           component={AreaList}
-          options={{title: 'Areas'}} />
+          options={{title: 'Cuisines'}} />
         <Stack.Screen
           name="Area"
           component={Area} />
