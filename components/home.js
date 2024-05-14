@@ -9,10 +9,14 @@ export default Home = ({navigation}) => {
                 title="Random Recipe Please!"
                 styles={styles.button}
                 onPress={() => navigation.navigate('RandomRecipe')}></Button>
-             <Button
+            <Button
                 title="Categories"
                 style={styles.button}
                 onPress={() => navigation.navigate('Categories')}></Button>
+            <Button
+                title="Areas"
+                style={styles.button}
+                onPress={() => navigation.navigate('Areas')}></Button>
         </View>
     )
 }
