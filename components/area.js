@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import MealDbRoutes from "../api/mealDbRoutes";
-import { Pressable, ScrollView, StyleSheet } from "react-native";
+import { Pressable, ScrollView, StyleSheet, View } from "react-native";
 import BasicRecipe from "./basicRecipe";
 import Heading from "./heading";
 
@@ -29,12 +29,14 @@ const Area = ({navigation, route}) => {
 
     return (
         <ScrollView style={styles.container}>
-            <Heading title={route.params.category}></Heading>
+            <Heading title={route.params.area}></Heading>
+            <View style={styles.main}>
                 { recipes.map(r => (
                     <Pressable key={r.idMeal} onPress={() => navigateToRecipeDetails(r.idMeal)}>
                         <BasicRecipe recipe={r}></BasicRecipe>
                     </Pressable>
                 )) }
+            </View>
         </ScrollView>
     )
 }
@@ -49,6 +51,9 @@ const styles = StyleSheet.create({
     button: {
       alignSelf: 'center',
       paddingTop: 10
+    },
+    main: {
+        height: '90%'
     }
 });
 

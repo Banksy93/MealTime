@@ -3,6 +3,7 @@ import MealDbRoutes from "../api/mealDbRoutes";
 import { FlatList, Pressable, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import Heading from "./heading";
 
 export default CategoryList = ({navigation}) => {
     const [categories, setCategories] = useState([]);
@@ -21,19 +22,22 @@ export default CategoryList = ({navigation}) => {
     return (
         <SafeAreaView style={styles.container}>
             <View>
-                <FlatList
-                    data={categories}
-                    renderItem={({item}) =>
-                        <Pressable
-                            style={styles.shadow}
-                            onPress={() => navigation.navigate('Category', {category: item.strCategory})}>
-                                <View style={styles.viewFlex}>
-                                    <Text style={styles.item}>{item.strCategory}</Text>
-                                    <FontAwesomeIcon style={styles.icon} icon={faArrowRight}/>
-                                </View>
-                        </Pressable>}
-                    showsVerticalScrollIndicator={false}
-                />
+                <Heading title="Categories"></Heading>
+                <View style={styles.main}>
+                    <FlatList
+                        data={categories}
+                        renderItem={({item}) =>
+                            <Pressable
+                                style={styles.shadow}
+                                onPress={() => navigation.navigate('Category', {category: item.strCategory})}>
+                                    <View style={styles.viewFlex}>
+                                        <Text style={styles.item}>{item.strCategory}</Text>
+                                        <FontAwesomeIcon style={styles.icon} icon={faArrowRight}/>
+                                    </View>
+                            </Pressable>}
+                        showsVerticalScrollIndicator={false}
+                    />
+                </View>
             </View>
         </SafeAreaView>
     )
@@ -71,5 +75,9 @@ const styles = StyleSheet.create({
       backgroundColor: 'white',
       padding: 10,
       margin: 10,
+      borderRadius: 10
+    },
+    main: {
+        height: '90%'
     }
 });

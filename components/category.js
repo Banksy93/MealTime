@@ -1,4 +1,4 @@
-import { Pressable, ScrollView, StyleSheet } from "react-native";
+import { Pressable, ScrollView, StyleSheet, View } from "react-native";
 import Heading from "./heading";
 import { useEffect, useState } from "react";
 import MealDbRoutes from "../api/mealDbRoutes";
@@ -26,15 +26,17 @@ const Category = ({navigation, route}) => {
 
         navigation.navigate("RecipeDetails", {recipe: recipe});
     }
-
+    // TODO: Try and change to flat list for view height
     return (
         <ScrollView style={styles.container}>
             <Heading title={route.params.category}></Heading>
+            <View style={styles.main}>
                 { recipes.map(r => (
                     <Pressable key={r.idMeal} onPress={() => navigateToRecipeDetails(r.idMeal)}>
                         <BasicRecipe recipe={r}></BasicRecipe>
                     </Pressable>
                 )) }
+            </View>
         </ScrollView>
     )
 }
@@ -49,6 +51,9 @@ const styles = StyleSheet.create({
     button: {
       alignSelf: 'center',
       paddingTop: 10
+    },
+    main: {
+        height: '90%'
     }
 });
 
