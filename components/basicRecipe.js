@@ -13,10 +13,10 @@ const BasicRecipe = props => {
 
 const styles = StyleSheet.create({
     tinyLogo: {
-        width: '95%',
-        height: undefined,
-        aspectRatio: 1,
-        borderRadius: 10
+      width: '95%',
+      height: undefined,
+      aspectRatio: 1,
+      borderRadius: 10
     },
     heading: {
       fontWeight: 'bold',

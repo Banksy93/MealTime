@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import MealDbRoutes from "../api/mealDbRoutes";
-import { Pressable, ScrollView, StyleSheet, View } from "react-native";
+import { FlatList, Pressable, SafeAreaView, StyleSheet, View } from "react-native";
 import BasicRecipe from "./basicRecipe";
 import Heading from "./heading";
 
@@ -28,16 +28,21 @@ const Area = ({navigation, route}) => {
     }
 
     return (
-        <ScrollView style={styles.container}>
-            <Heading title={route.params.area}></Heading>
-            <View style={styles.main}>
-                { recipes.map(r => (
-                    <Pressable key={r.idMeal} onPress={() => navigateToRecipeDetails(r.idMeal)}>
-                        <BasicRecipe recipe={r}></BasicRecipe>
-                    </Pressable>
-                )) }
+        <SafeAreaView style={styles.container}>
+            <View>
+                <Heading title={route.params.area}></Heading>
+                <View style={styles.main}>
+                    <FlatList
+                        data={recipes}
+                        renderItem={({item}) =>
+                        <Pressable
+                            onPress={() => navigateToRecipeDetails(item.idMeal)}>
+                            <BasicRecipe recipe={item}></BasicRecipe>
+                        </Pressable>}
+                        showsVerticalScrollIndicator={false}/>
+                </View>
             </View>
-        </ScrollView>
+        </SafeAreaView>
     )
 }
 

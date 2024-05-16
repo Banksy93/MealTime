@@ -4,22 +4,18 @@ import Heading from "./heading";
 import Ingredients from "./ingredients";
 import Instructions from "./instructions";
 
-export default RecipeDetails = ({navigation, route}) => {
+export default RecipeDetails = ({route}) => {
     return (
-      <View style={styles.main}>
-        <ScrollView style={styles.container}>
+      <ScrollView style={[styles.container, styles.main]}>
+        <View style={{paddingBottom: 20}}>
           <Heading title={route.params.recipe.strMeal}></Heading>
           <Image style={styles.tinyLogo} source={{uri: route.params.recipe.strMealThumb}} />
           <SubHeading title="Ingredients"></SubHeading>
           <Ingredients recipe={route.params.recipe}></Ingredients>
           <SubHeading title="Instructions"></SubHeading>
           <Instructions instructions={route.params.recipe.strInstructions}></Instructions>
-          <Button
-            title="Home"
-            style={styles.button}
-            onPress={() => navigation.navigate('RandomRecipe')}></Button>
-        </ScrollView>
-      </View>
+        </View>
+      </ScrollView>
     )
 }
 
@@ -32,15 +28,12 @@ const styles = StyleSheet.create({
       paddingBottom: 20
     },
     tinyLogo: {
-      width: 150,
-      height: 150,
-      alignSelf: 'center'
-    },
-    button: {
-      alignSelf: 'center',
-      marginBottom: 5
+      width: '95%',
+      height: undefined,
+      aspectRatio: 1,
+      borderRadius: 10
     },
     main: {
-      flex: 1
+      height: '90%'
     }
 });
