@@ -42,12 +42,6 @@ const styles = StyleSheet.create({
       backgroundColor: "#fff",
       padding: 20
     },
-    heading: {
-        fontWeight: 'bold',
-        fontSize: 20,
-        alignSelf: 'center',
-        paddingBottom: 10
-    },
     viewFlex: {
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -71,6 +65,7 @@ const styles = StyleSheet.create({
       backgroundColor: 'white',
       padding: 10,
       margin: 10,
+      borderRadius: 10
     },
     icon: {
         color: '#FF7000'

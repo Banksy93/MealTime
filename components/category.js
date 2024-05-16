@@ -1,4 +1,4 @@
-import { Pressable, ScrollView, StyleSheet } from "react-native";
+import { FlatList, Pressable, SafeAreaView, StyleSheet, View } from "react-native";
 import Heading from "./heading";
 import { useEffect, useState } from "react";
 import MealDbRoutes from "../api/mealDbRoutes";
@@ -28,27 +28,42 @@ const Category = ({navigation, route}) => {
     }
 
     return (
-        <ScrollView style={styles.container}>
-            <Heading title={route.params.category}></Heading>
-                { recipes.map(r => (
-                    <Pressable key={r.idMeal} onPress={() => navigateToRecipeDetails(r.idMeal)}>
-                        <BasicRecipe recipe={r}></BasicRecipe>
-                    </Pressable>
-                )) }
-        </ScrollView>
+        <SafeAreaView style={styles.container}>
+            <View>
+                <Heading title={route.params.category}></Heading>
+                <View style={styles.main}>
+                    <FlatList
+                        data={recipes}
+                        renderItem={({item}) =>
+                        <Pressable
+                            onPress={() => navigateToRecipeDetails(item.idMeal)}>
+                            <BasicRecipe recipe={item}></BasicRecipe>
+                        </Pressable>}
+                        showsVerticalScrollIndicator={false}/>
+                </View>
+            </View>
+        </SafeAreaView>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      flexDirection: 'column',
       backgroundColor: "#fff",
       padding: 20
     },
     button: {
       alignSelf: 'center',
       paddingTop: 10
+    },
+    main: {
+        height: '90%'
+    },
+    item: {
+      padding: 20,
+      fontSize: 20,
+      marginTop: 5,
+      color: '#FF7000'
     }
 });
 
