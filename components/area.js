@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react"
 import MealDbRoutes from "../api/mealDbRoutes";
-import { FlatList, Pressable, SafeAreaView, StyleSheet, View } from "react-native";
-import BasicRecipe from "./basicRecipe";
+import { FlatList, SafeAreaView, View } from "react-native";
 import Heading from "./heading";
+import RecipeListItem from "./recipeListItem";
+import { commonStyles } from "../styles";
 
-const Area = ({navigation, route}) => {
+const Area = ({route}) => {
     const [recipes, setRecipes] = useState([]);
 
     useEffect(() => {
@@ -17,49 +18,21 @@ const Area = ({navigation, route}) => {
 
         getReciesForArea();
     }, []);
-
-    const navigateToRecipeDetails = async (id) => {
-        const url = MealDbRoutes.getReicpeById(id);
-        const response = await fetch(url);
-        const json = await response.json();
-        const recipe = json.meals[0];
-
-        navigation.navigate("RecipeDetails", {recipe: recipe});
-    }
-
+    // TODO: This and category.js look v similar, new component?
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={commonStyles.container}>
             <View>
                 <Heading title={route.params.area}></Heading>
-                <View style={styles.main}>
+                <View style={commonStyles.mainHeight}>
                     <FlatList
                         data={recipes}
                         renderItem={({item}) =>
-                        <Pressable
-                            onPress={() => navigateToRecipeDetails(item.idMeal)}>
-                            <BasicRecipe recipe={item}></BasicRecipe>
-                        </Pressable>}
+                            <RecipeListItem recipe={item}></RecipeListItem>}
                         showsVerticalScrollIndicator={false}/>
                 </View>
             </View>
         </SafeAreaView>
     )
 }
-
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      flexDirection: 'column',
-      backgroundColor: "#fff",
-      padding: 20
-    },
-    button: {
-      alignSelf: 'center',
-      paddingTop: 10
-    },
-    main: {
-        height: '90%'
-    }
-});
 
 export default Area;
