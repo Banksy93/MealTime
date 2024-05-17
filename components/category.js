@@ -1,10 +1,12 @@
-import { FlatList, Pressable, SafeAreaView, StyleSheet, View } from "react-native";
+import { FlatList, SafeAreaView, StyleSheet, View } from "react-native";
 import Heading from "./heading";
 import { useEffect, useState } from "react";
 import MealDbRoutes from "../api/mealDbRoutes";
-import BasicRecipe from "./basicRecipe";
+import RecipeListItem from "./recipeListItem";
+import { commonStyles } from "../styles";
+import List from "./list";
 
-const Category = ({navigation, route}) => {
+const Category = ({route}) => {
     const [recipes, setRecipes] = useState([]);
 
     useEffect(() => {
@@ -18,53 +20,23 @@ const Category = ({navigation, route}) => {
         getRecipesForCategory();
     }, []);
 
-    const navigateToRecipeDetails = async (id) => {
-        const url = MealDbRoutes.getReicpeById(id);
-        const response = await fetch(url);
-        const json = await response.json();
-        const recipe = json.meals[0];
-
-        navigation.navigate("RecipeDetails", {recipe: recipe});
-    }
-
+    // TODO: Child component loads before useEffect is done meaning nothing is displayed
+    // Use loading spinner or something similar? Or useContext?
     return (
-        <SafeAreaView style={styles.container}>
+        // <List items={recipes} headingTitle={route.params.category}></List>
+        <SafeAreaView style={commonStyles.container}>
             <View>
                 <Heading title={route.params.category}></Heading>
-                <View style={styles.main}>
+                <View style={commonStyles.mainHeight}>
                     <FlatList
                         data={recipes}
                         renderItem={({item}) =>
-                        <Pressable
-                            onPress={() => navigateToRecipeDetails(item.idMeal)}>
-                            <BasicRecipe recipe={item}></BasicRecipe>
-                        </Pressable>}
+                            <RecipeListItem recipe={item}></RecipeListItem>}
                         showsVerticalScrollIndicator={false}/>
                 </View>
             </View>
         </SafeAreaView>
     )
 }
-
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: "#fff",
-      padding: 20
-    },
-    button: {
-      alignSelf: 'center',
-      paddingTop: 10
-    },
-    main: {
-        height: '90%'
-    },
-    item: {
-      padding: 20,
-      fontSize: 20,
-      marginTop: 5,
-      color: '#FF7000'
-    }
-});
 
 export default Category;

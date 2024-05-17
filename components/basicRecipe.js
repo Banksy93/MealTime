@@ -1,8 +1,9 @@
 import { Image, StyleSheet, Text, View } from "react-native";
+import { commonStyles } from "../styles";
 
 const BasicRecipe = props => {
     return (
-        <View style={styles.shadow}>
+        <View style={commonStyles.shadow}>
             <Text style={styles.heading}>{props.recipe.strMeal}</Text>
             <View style={styles.imageContainer}>
                 <Image style={styles.tinyLogo} source={{uri: props.recipe.strMealThumb}}></Image>
@@ -28,20 +29,6 @@ const styles = StyleSheet.create({
         padding: 5,
         alignSelf: 'flex-start'
     },
-    shadow: {
-      shadowColor: 'rgb(0, 0, 0)',
-      shadowOffset: {
-        width: 3,
-        height: 3,
-      },
-      shadowOpacity: 0.5,
-      shadowRadius: 5,
-      elevation: 2,
-      backgroundColor: 'white',
-      padding: 10,
-      margin: 10,
-      borderRadius: 10
-    }
 })
 
 export default BasicRecipe;
