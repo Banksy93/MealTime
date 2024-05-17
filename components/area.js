@@ -4,6 +4,7 @@ import { FlatList, SafeAreaView, View } from "react-native";
 import Heading from "./heading";
 import RecipeListItem from "./recipeListItem";
 import { commonStyles } from "../styles";
+import List from "./list";
 
 const Area = ({route}) => {
     const [recipes, setRecipes] = useState([]);
@@ -18,8 +19,11 @@ const Area = ({route}) => {
 
         getReciesForArea();
     }, []);
-    // TODO: This and category.js look v similar, new component?
+
+    // TODO: Child component loads before useEffect is done meaning nothing is displayed
+    // Use loading spinner or something similar? Or useContext?
     return (
+        // <List items={recipes} headingTitle={route.params.area}></List>
         <SafeAreaView style={commonStyles.container}>
             <View>
                 <Heading title={route.params.area}></Heading>

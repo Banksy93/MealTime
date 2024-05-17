@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import MealDbRoutes from "../api/mealDbRoutes";
 import RecipeListItem from "./recipeListItem";
 import { commonStyles } from "../styles";
+import List from "./list";
 
 const Category = ({route}) => {
     const [recipes, setRecipes] = useState([]);
@@ -18,8 +19,11 @@ const Category = ({route}) => {
 
         getRecipesForCategory();
     }, []);
-    // TODO: This and area.js look v similar, new component?
+
+    // TODO: Child component loads before useEffect is done meaning nothing is displayed
+    // Use loading spinner or something similar? Or useContext?
     return (
+        // <List items={recipes} headingTitle={route.params.category}></List>
         <SafeAreaView style={commonStyles.container}>
             <View>
                 <Heading title={route.params.category}></Heading>
