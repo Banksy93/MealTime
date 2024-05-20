@@ -7,7 +7,7 @@ const SearchStack = () => {
     return (
         <Stack.Navigator screenOptions={{headerShown: false}}>
             <Stack.Screen
-                name="Search"
+                name="SearchRecipe"
                 component={Search}
                 title="Search Recipe" />
         </Stack.Navigator>

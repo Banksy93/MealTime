@@ -7,7 +7,7 @@ const FavouritesStack = () => {
     return (
         <Stack.Navigator screenOptions={{headerShown: false}}>
             <Stack.Screen
-                name="Favourites"
+                name="FavouriteRecipes"
                 component={Favourites}
                 title="Favourite Recipes" />
         </Stack.Navigator>
