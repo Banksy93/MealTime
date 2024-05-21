@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text } from "react-native";
 
 const Heading = props => {
     return <Text style={styles.heading}>{props.title}</Text>

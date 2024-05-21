@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { FlatList, StyleSheet, Button, View, Pressable, Text } from 'react-native';
 import MealDbRoutes from '../api/mealDbRoutes.js';
 import BasicRecipe from './basicRecipe.js';
+import { commonStyles } from '../styles.js';
 
 export default RandomRecipe = ({navigation}) => {
   const [recipes, setRecipes] = useState([]);
@@ -21,7 +22,7 @@ export default RandomRecipe = ({navigation}) => {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <View style={commonStyles.container}>
       { <FlatList
         data={recipes}
         style={styles.recipe}
@@ -42,12 +43,6 @@ export default RandomRecipe = ({navigation}) => {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    backgroundColor: "#fff",
-    padding: 20
-  },
   tinyLogo: {
     width: 150,
     height: 150,
