@@ -23,4 +23,18 @@ export const commonStyles = StyleSheet.create({
       margin: 10,
       borderRadius: 10
     },
+    viewFlex: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center'
+    },
+    item: {
+      padding: 20,
+      fontSize: 20,
+      marginTop: 5,
+      color: '#FF7000'
+    },
+    icon: {
+        color: '#FF7000'
+    }
 });

@@ -26,4 +26,13 @@ export default class MealDbRoutes {
   static getByArea(area) {
     return baseUrl + "/filter.php?a=" + area;
   }
+
+  static searchMealByName(name) {
+    return baseUrl + "/search.php?s=" + name;
+  }
+
+  static searchByIngredient(ingredient) {
+    const urlFriendlyIngredient = ingredient.split(' ').join('_');
+    return baseUrl  + "/filter.php?i=" + urlFriendlyIngredient;
+  }
 }

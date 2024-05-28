@@ -1,5 +1,5 @@
 import { Image, StyleSheet, Text, View } from "react-native";
-import { commonStyles } from "../styles";
+import { commonStyles } from "../../styles";
 
 const BasicRecipe = props => {
     return (

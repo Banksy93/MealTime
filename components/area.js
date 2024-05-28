@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react"
 import MealDbRoutes from "../api/mealDbRoutes";
 import { FlatList, SafeAreaView, View } from "react-native";
-import Heading from "./heading";
-import RecipeListItem from "./recipeListItem";
+import RecipeListItem from "./generic/recipeListItem";
 import { commonStyles } from "../styles";
-import List from "./list";
+import Heading from "./generic/heading";
 
 const Area = ({route}) => {
     const [recipes, setRecipes] = useState([]);
@@ -23,10 +22,9 @@ const Area = ({route}) => {
     // TODO: Child component loads before useEffect is done meaning nothing is displayed
     // Use loading spinner or something similar? Or useContext?
     return (
-        // <List items={recipes} headingTitle={route.params.area}></List>
         <SafeAreaView style={commonStyles.container}>
             <View>
-                <Heading title={route.params.area}></Heading>
+                <Heading title={route.params.area}/>
                 <View style={commonStyles.mainHeight}>
                     <FlatList
                         data={recipes}
