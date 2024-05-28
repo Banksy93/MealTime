@@ -30,4 +30,9 @@ export default class MealDbRoutes {
   static searchMealByName(name) {
     return baseUrl + "/search.php?s=" + name;
   }
+
+  static searchByIngredient(ingredient) {
+    const urlFriendlyIngredient = ingredient.split(' ').join('_');
+    return baseUrl  + "/filter.php?i=" + urlFriendlyIngredient;
+  }
 }

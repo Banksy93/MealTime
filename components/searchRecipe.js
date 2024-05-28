@@ -1,5 +1,4 @@
-import { Button, FlatList, Pressable, SafeAreaView, Text, TextInput, TouchableHighlight, View } from "react-native"
-import Heading from "./generic/heading"
+import { FlatList, Pressable, SafeAreaView, StyleSheet, Text, TextInput, TouchableHighlight, View } from "react-native"
 import { commonStyles } from "../styles"
 import { useState } from "react"
 import MealDbRoutes from "../api/mealDbRoutes"
@@ -28,16 +27,16 @@ export default SearchRecipe = ({navigation}) => {
 
     return (
         <SafeAreaView style={commonStyles.container}>
-            <View style={{flexDirection: 'row'}}>
+            <View style={styles.searchBarFlex}>
                 <View>
                     <TextInput
                         placeholder="Search recipe.."
-                        style={{alignItems:'center',justifyContent:'center'}}
+                        style={styles.textInput}
                         onChangeText={onSearchTextChange}
                         onSubmitEditing={getResults} />
                 </View>
                 <TouchableHighlight
-                    style={{alignItems: 'center', justifyContent: 'center'}}
+                    style={styles.searchButton}
                     onPress={getResults}>
                     <View>
                         <Text>Search</Text>
@@ -48,9 +47,10 @@ export default SearchRecipe = ({navigation}) => {
                 { displayResults ? <FlatList
                     data={results}
                     renderItem={({item}) =>
-                    <Pressable>
+                    <Pressable onPress={() => navigation.navigate('RecipeDetails', {recipe: item})}>
                         <BasicRecipe recipe={item} />
-                    </Pressable>} /> : null}
+                    </Pressable>}
+                    showsVerticalScrollIndicator={false} /> : null}
             </View>
             { displayNothingFound ?
             <View style={commonStyles.viewFlex}>
@@ -59,3 +59,17 @@ export default SearchRecipe = ({navigation}) => {
         </SafeAreaView>
     )
 }
+
+const styles = StyleSheet.create({
+    searchBarFlex: {
+        flexDirection: 'row'
+    },
+    textInput: {
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    searchButton: {
+        alignItems: 'center',
+        justifyContent: 'center'
+    }
+});
