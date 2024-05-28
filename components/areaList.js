@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
 import MealDbRoutes from "../api/mealDbRoutes";
 import { FlatList, Pressable, SafeAreaView, View } from "react-native";
-import Heading from "./heading";
-import ListItem from "./listItem";
 import { commonStyles } from "../styles";
+import ListItem from "./generic/listItem";
+import Heading from "./generic/heading";
 
 export default AreaList = ({navigation}) => {
     const [areas, setAreas] = useState([]);
@@ -22,7 +22,7 @@ export default AreaList = ({navigation}) => {
     return (
         <SafeAreaView style={commonStyles.container}>
             <View>
-                <Heading title="Cuisines"></Heading>
+                <Heading title="Cuisines" />
                 <View style={commonStyles.mainHeight}>
                     <FlatList
                         data={areas}

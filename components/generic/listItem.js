@@ -1,7 +1,7 @@
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome"
 import { Text, View } from "react-native"
-import { commonStyles } from "../styles";
+import { commonStyles } from "../../styles";
 
 const ListItem = ({text}) => {
     return (

@@ -1,5 +1,5 @@
 import { Pressable, SafeAreaView, StyleSheet, Text, View } from "react-native";
-import Heading from "./heading";
+import Heading from "./generic/heading";
 import { commonStyles } from "../styles";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";

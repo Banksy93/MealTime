@@ -1,11 +1,9 @@
 import { FlatList, SafeAreaView, View } from "react-native"
-import { commonStyles } from "../styles"
+import { commonStyles } from "../../styles"
 import RecipeListItem from "./recipeListItem"
 import Heading from "./heading"
 
 const List = ({items, headingTitle}) => {
-    console.log('Items', items);
-
     return (
         <SafeAreaView style={commonStyles.container}>
             <View>

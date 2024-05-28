@@ -1,6 +1,6 @@
 import { Pressable } from "react-native";
-import MealDbRoutes from "../api/mealDbRoutes";
-import BasicRecipe from "./basicRecipe";
+import MealDbRoutes from "../../api/mealDbRoutes";
+import { BasicRecipe } from "./basicRecipe";
 import { useNavigation } from "@react-navigation/native";
 
 const RecipeListItem = ({recipe}) => {

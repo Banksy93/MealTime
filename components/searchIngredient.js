@@ -1,5 +1,5 @@
 import { SafeAreaView } from "react-native"
-import Heading from "./heading"
+import Heading from "./generic/heading"
 import { commonStyles } from "../styles"
 
 export default SearchIngredient = ({navigation}) => {

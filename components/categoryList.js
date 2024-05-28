@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import MealDbRoutes from "../api/mealDbRoutes";
-import { FlatList, Pressable, SafeAreaView, StyleSheet, Text, View } from "react-native";
-import Heading from "./heading";
-import ListItem from "./listItem";
+import { FlatList, Pressable, SafeAreaView, View } from "react-native";
 import { commonStyles } from "../styles";
+import ListItem from "./generic/listItem";
+import Heading from "./generic/heading";
 
 export default CategoryList = ({navigation}) => {
     const [categories, setCategories] = useState([]);
@@ -22,7 +22,7 @@ export default CategoryList = ({navigation}) => {
     return (
         <SafeAreaView style={commonStyles.container}>
             <View>
-                <Heading title="Categories"></Heading>
+                <Heading title="Categories" />
                 <View style={commonStyles.mainHeight}>
                     <FlatList
                         data={categories}

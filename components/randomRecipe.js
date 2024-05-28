@@ -1,20 +1,17 @@
 import { useEffect, useState } from 'react';
 import { FlatList, StyleSheet, Button, View, Pressable, Text } from 'react-native';
 import MealDbRoutes from '../api/mealDbRoutes.js';
-import BasicRecipe from './basicRecipe.js';
+import BasicRecipe from './generic/basicRecipe.js';
 import { commonStyles } from '../styles.js';
 
 export default RandomRecipe = ({navigation}) => {
   const [recipes, setRecipes] = useState([]);
-  const [recipeButtonText, setRecipeButtonText] = useState('Find Recipe');
 
   const getRandomRecipe = async () => {
     const url = MealDbRoutes.generateRandomRecipe;
     const response = await fetch(url);
     const json = await response.json();
     setRecipes(json.meals);
-
-    setRecipeButtonText('Find Another Recipe');
   }
 
   useEffect(() => {
