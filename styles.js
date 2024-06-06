@@ -36,5 +36,22 @@ export const commonStyles = StyleSheet.create({
     },
     icon: {
         color: '#FF7000'
-    }
+    },
+    searchBarFlex: {
+      flexDirection: 'row',
+      paddingBottom: 20,
+      alignSelf: "center",
+    },
+    textInput: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 40,
+        paddingRight: 10,
+        fontSize: 24
+    },
+    searchButton: {
+        alignSelf: 'center',
+        justifyContent: 'center',
+        paddingLeft: 45,
+    },
 });
