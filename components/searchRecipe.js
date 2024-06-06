@@ -1,16 +1,16 @@
-import { FlatList, Pressable, SafeAreaView, StyleSheet, Text, TextInput, TouchableHighlight, View } from "react-native"
+import { FlatList, Pressable, SafeAreaView, Text, View } from "react-native"
 import { commonStyles } from "../styles"
 import { useState } from "react"
 import MealDbRoutes from "../api/mealDbRoutes"
 import BasicRecipe from "./generic/basicRecipe";
+import SearchFunction from "./generic/searchFunction";
 
 export default SearchRecipe = ({navigation}) => {
-    const [searchText, onSearchTextChange] = useState('');
     const [displayResults, setDisplayResults] = useState(false);
     const [displayNothingFound, setDisplayNothingFound] = useState(false);
     const [results, setResults] = useState([]);
 
-    const getResults = async () => {
+    const getResults = async (searchText) => {
         const url = MealDbRoutes.searchMealByName(searchText);
         const response = await fetch(url);
         const json = await response.json();
@@ -27,22 +27,9 @@ export default SearchRecipe = ({navigation}) => {
 
     return (
         <SafeAreaView style={commonStyles.container}>
-            <View style={styles.searchBarFlex}>
-                <View>
-                    <TextInput
-                        placeholder="Search recipe.."
-                        style={styles.textInput}
-                        onChangeText={onSearchTextChange}
-                        onSubmitEditing={getResults} />
-                </View>
-                <TouchableHighlight
-                    style={styles.searchButton}
-                    onPress={getResults}>
-                    <View>
-                        <Text>Search</Text>
-                    </View>
-                </TouchableHighlight>
-            </View>
+            <SearchFunction
+                placeholder="Search for a recipe"
+                onSearchCallback={getResults}/>
             <View>
                 { displayResults ? <FlatList
                     data={results}
@@ -59,17 +46,3 @@ export default SearchRecipe = ({navigation}) => {
         </SafeAreaView>
     )
 }
-
-const styles = StyleSheet.create({
-    searchBarFlex: {
-        flexDirection: 'row'
-    },
-    textInput: {
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    searchButton: {
-        alignItems: 'center',
-        justifyContent: 'center'
-    }
-});
