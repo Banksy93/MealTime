@@ -3,6 +3,7 @@ import Ingredients from "./ingredients";
 import Instructions from "./instructions";
 import Heading from "./generic/heading";
 import SubHeading from "./generic/subHeading";
+import YoutubeVideo from "./generic/youtubeVideo";
 
 export default RecipeDetails = ({route}) => {
     return (
@@ -14,6 +15,10 @@ export default RecipeDetails = ({route}) => {
           <Ingredients recipe={route.params.recipe}></Ingredients>
           <SubHeading title="Instructions" />
           <Instructions instructions={route.params.recipe.strInstructions}></Instructions>
+          { route.params.recipe.strYoutube.length > 0 ?
+            <YoutubeVideo videoUrl={route.params.recipe.strYoutube} />
+             : null
+          }
         </View>
       </ScrollView>
     )

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { FlatList, StyleSheet, Button, View, Pressable, Text } from 'react-native';
+import { FlatList, StyleSheet, View, Pressable, Text } from 'react-native';
 import MealDbRoutes from '../api/mealDbRoutes.js';
 import BasicRecipe from './generic/basicRecipe.js';
 import { commonStyles } from '../styles.js';
@@ -27,7 +27,7 @@ export default RandomRecipe = ({navigation}) => {
         renderItem={({item}) => (
           <View>
             <Pressable onPress={() => navigation.navigate('RecipeDetails', {recipe: item})}>
-              <BasicRecipe recipe={item}></BasicRecipe>
+              <BasicRecipe recipe={item} />
             </Pressable>
           </View>
         )}
