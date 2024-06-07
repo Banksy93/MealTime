@@ -1,6 +1,6 @@
 import { Pressable } from "react-native";
 import MealDbRoutes from "../../api/mealDbRoutes";
-import { BasicRecipe } from "./basicRecipe";
+import BasicRecipe from "./basicRecipe";
 import { useNavigation } from "@react-navigation/native";
 
 const RecipeListItem = ({recipe}) => {
@@ -17,7 +17,7 @@ const RecipeListItem = ({recipe}) => {
 
     return (
         <Pressable onPress={() => navigateToRecipeDetails(recipe.idMeal)}>
-            <BasicRecipe recipe={recipe}></BasicRecipe>
+            <BasicRecipe recipe={recipe} />
         </Pressable>
     )
 }

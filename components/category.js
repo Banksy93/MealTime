@@ -1,4 +1,4 @@
-import { FlatList, SafeAreaView, StyleSheet, View } from "react-native";
+import { FlatList, SafeAreaView, View } from "react-native";
 import { useEffect, useState } from "react";
 import MealDbRoutes from "../api/mealDbRoutes";
 import RecipeListItem from "./generic/recipeListItem";
